@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>San Andreas Radio</title>
+    <style>
+        @font-face {
+            font-family: 'GTASA';
+            src: url('Beckett.ttf');
+        }
+
+        @font-face {
+            font-family: "GTASA_current_station";
+            src: url(bg/BankGothic.ttf);
+        }
+        body {
+            background-color: black;
+            color: lightgray;
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            cursor: url('click.png'), auto;
+        }
+        h1 {
+            font-family: 'GTASA';
+            text-align: left;
+            padding-left: 1.5%;
+            color: #accbf1;
+            font-size: 60px;
+        }
+        h2 {
+            font-family: 'GTASA_current_station';
+            text-align: center;
+            color: #98b3d5;
+            font-size: 60px;
+        }
+        .radio-station {
+            margin: 20px 0;
+            display: flex; /* Используем flexbox для центрирования */
+            justify-content: center; /* Центрируем содержимое */
+            flex-wrap: wrap; /* Позволяем переносить элементы на новую строку */
+        }
+        .top-right-image {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 300px;
+            height: auto;
+        }
+
+        /* Убираем эффект увеличения для top-right-image */
+        .top-right-image:hover {
+            transform: none; /* Убираем увеличение при наведении */
+        }
+
+        img {
+            width: 120px;
+            margin: 0 20px;
+            transition: transform 0.2s; /* Плавный переход для увеличения */
+        }
+        img:hover {
+            transform: scale(1.1); /* Увеличение при наведении */
+        }
+        img.active{
+            transform: scale(1.5); /* Увеличение при активации */
+            transition: transform 0.2s; /* Плавный переход для увеличения */
+        }
+        .nav-links {
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <img src="bg/aa.png" class="top-right-image" alt="Top Right Image">
+    <h1>San Andreas Radio</h1>
+
+    <div class="radio-stations">
+        <h2>Radio Station</h2>
+        <div class="radio-station">
+            <img src="Assets/bounce-fm.png" alt="Bounce FM" onclick="playMusic(this)">
+            <img src="Assets/csr.png" alt="CSR 103.9" onclick="playMusic(this)">
+            <img src="Assets/k-dst.png" alt="K-DST" onclick="playMusic(this)">
+            <img src="Assets/k-jah.png" alt="Kahn Radio" onclick="playMusic(this)">
+            <img src="Assets/k-rose.png" alt="Kahn Radio" onclick="playMusic(this)">
+            <img src="Assets/master-sounds.png" alt="Master Sounds 98.3" onclick="playMusic(this)">
+            <img src="Assets/playback-fm.png" alt="PlayBack FM" onclick="playMusic(this)">
+            <img src="Assets/radio-los-santos.png" alt="Radio Los Santos" onclick="playMusic(this)">
+            <img src="Assets/radio-x.png" alt="Radio X" onclick="playMusic(this)">
+            <img src="Assets/sfur.png" alt="SFR" onclick="playMusic(this)">
+            <img src="Assets/wctr.png" alt="WCTR" onclick="playMusic_Flame(this)">
+        </div>
+    </div>
+
+    <div class="nav-links">
+        <a href="https://t.me/linaaar4ik">Contact Author</a> | 
+        <a href="#">Back</a>
+    </div>
+
+    <audio id="radio-audio" src="RADIO LOS SANTOS.mp3"></audio>
+    <audio id="radio-audio_flame" src="The_Moth_The_Flame_-_Empire_the_Sun.mp3"></audio>
+
+    <script>
+    const audioMain = document.getElementById('radio-audio');
+    const audioFlame = document.getElementById('radio-audio_flame');
+    function playMusic(element) {
+        // Убираем класс увеличения у всех изображений
+        const images = document.querySelectorAll('.radio-station img');
+        images.forEach(img => img.classList.remove('active'));
+        // Добавляем класс увеличения к нажатому изображению
+        element.classList.add('active');
+        // Проверяем, играет ли основное радио
+        if (audioMain.paused) {
+            audioMain.play();
+        }
+        // Останавливаем Flame, если он играет
+        if (!audioFlame.paused) {
+            audioFlame.pause();
+        }
+    }
+    function playMusic_Flame(element) {
+        // Убираем класс увеличения у всех изображений
+        const images = document.querySelectorAll('.radio-station img');
+        images.forEach(img => img.classList.remove('active'));
+        // Добавляем класс увеличения к нажатому изображению
+        element.classList.add('active');
+        // Проверяем, играет ли Flame
+        if (audioFlame.paused) {
+            audioFlame.play();
+        }
+        // Останавливаем основное радио, если оно играет
+        if (!audioMain.paused) {
+            audioMain.pause();
+        }
+    }
+    </script>
+
+
+</body>
+</html>
